@@ -42,7 +42,11 @@ public class Main extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Library Management System");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel1.setName("lblLibrarySystem"); // NOI18N
+        jLabel1.setName("tblBorrowers"); // NOI18N
+        jLabel1.setVerifyInputWhenFocusTarget(false);
+
+        jScrollPane2.setName("tblBorrowers"); // NOI18N
+        jScrollPane2.setVerifyInputWhenFocusTarget(false);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -60,11 +64,15 @@ public class Main extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         jButton1.setText("Manage Borrowers");
         jButton1.setName("btnBorrowers"); // NOI18N
+        jButton1.setVerifyInputWhenFocusTarget(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jScrollPane3.setName("tblBorrowers"); // NOI18N
+        jScrollPane3.setVerifyInputWhenFocusTarget(false);
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,11 +85,13 @@ public class Main extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable3.setName("tblBooks"); // NOI18N
         jScrollPane3.setViewportView(jTable3);
 
         jButton2.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         jButton2.setText("Manage Books");
         jButton2.setName("btnBooks"); // NOI18N
+        jButton2.setVerifyInputWhenFocusTarget(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
