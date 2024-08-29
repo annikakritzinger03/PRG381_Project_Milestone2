@@ -105,6 +105,11 @@ public class Books extends javax.swing.JFrame {
             }
         });
         bookData.setName("tblBooks"); // NOI18N
+        bookData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bookDataMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(bookData);
 
         jLabel5.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
@@ -288,6 +293,26 @@ public class Books extends javax.swing.JFrame {
         Main main = new Main();
         main.setVisible(true);
     }//GEN-LAST:event_btnDeleteBorrower1ActionPerformed
+
+    private void bookDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookDataMouseClicked
+         // Get the index of the selected row
+    int selectedRowIndex = bookData.getSelectedRow();
+    
+    // Check if a row is selected
+    if (selectedRowIndex != -1) {
+        // Get data from the selected row
+        int bookId = (int) bookData.getValueAt(selectedRowIndex, 0);
+        String title = (String) bookData.getValueAt(selectedRowIndex, 1);
+        String genre = (String) bookData.getValueAt(selectedRowIndex, 2);
+        int authorId = (int) bookData.getValueAt(selectedRowIndex, 3);
+        
+        // Set data to text fields
+        txtBookID.setText(String.valueOf(bookId));
+        txtTitle.setText(title);
+        txtGenre.setText(genre);
+        txtAuthorID.setText(String.valueOf(authorId));
+    }
+    }//GEN-LAST:event_bookDataMouseClicked
 
     /**
      * @param args the command line arguments

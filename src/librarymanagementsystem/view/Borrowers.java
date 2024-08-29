@@ -21,6 +21,8 @@ public class Borrowers extends javax.swing.JFrame {
         initComponents();
         borrower.loadBorrowersIntoTable(borrowerData);
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,6 +131,11 @@ public class Borrowers extends javax.swing.JFrame {
             }
         });
         borrowerData.setName("tblBorrowers"); // NOI18N
+        borrowerData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                borrowerDataMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(borrowerData);
 
         btnUpdateBorrower.setBackground(new java.awt.Color(102, 204, 255));
@@ -257,7 +264,8 @@ public class Borrowers extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
     private void btnDeleteBorrower1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteBorrower1ActionPerformed
         // TODO add your handling code here:
         
@@ -295,6 +303,29 @@ public class Borrowers extends javax.swing.JFrame {
         borrower.addBorrower(username, name, phoneoremail, haslibrarycard);
         borrower.loadBorrowersIntoTable(borrowerData);
     }//GEN-LAST:event_addBorrowerActionPerformed
+
+    private void borrowerDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrowerDataMouseClicked
+        // TODO add your handling code here:
+         // Get the selected row index
+    int selectedRow = borrowerData.getSelectedRow();
+    
+    // Check if a row is actually selected
+    if (selectedRow != -1) {
+        // Retrieve data from the selected row
+        String borrowerID = borrowerData.getValueAt(selectedRow, 0).toString();
+        String username = borrowerData.getValueAt(selectedRow, 1).toString();
+        String name = borrowerData.getValueAt(selectedRow, 2).toString();
+        String phoneOrEmail = borrowerData.getValueAt(selectedRow, 3).toString();
+        boolean hasLibraryCard = (Boolean) borrowerData.getValueAt(selectedRow, 4);
+        
+        // Populate the form fields with the selected row data
+        txtBorrowerID.setText(borrowerID);
+        txtUsername.setText(username);
+        txtName.setText(name);
+        txtPhoneOrEmail.setText(phoneOrEmail);
+        checkBoxBorrowers.setSelected(hasLibraryCard);
+    }
+    }//GEN-LAST:event_borrowerDataMouseClicked
 
     /**
      * @param args the command line arguments
