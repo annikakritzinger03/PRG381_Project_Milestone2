@@ -22,17 +22,20 @@
 
 ### Configuration:
 1. **Access the Services Tab**: 
-   - IN your project folder, `Services` tab in the file explorer.
+   - In your project folder, `Services` tab in the file explorer.
+  
    ![img_2.png](img_2.png)
-2. Navigate the JavaDB Properties:
+   
+3. Navigate the JavaDB Properties:
    - Under `Services`, expand `Databases` and locate `JavaDB`.
+  
    ![img.png](img.png)
 
     > [!NOTE]
     > All other options except `Properties` should be greyed out unless the server is already configured, as shown in the example.
 
-3. Configure the Properties as follows:
+4. Configure the Properties as follows:
    - **Java DB Installation:** Browse and select the unzipped Apache Derby folder.
    - **Database Location:** Navigate to your project directory, create an empty folder (e.g., `database`), and include this folder in the directory path.
-4. Click `Ok` to save the settings and navigate back to `JavaDB`
-5. Right click on `JavaDB` and click `Start Server`.
+5. Click `Ok` to save the settings and navigate back to `JavaDB`
+6. Right click on `JavaDB` and click `Start Server`.
