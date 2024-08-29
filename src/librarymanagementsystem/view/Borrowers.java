@@ -4,17 +4,22 @@
  */
 package librarymanagementsystem.view;
 
+import librarymanagementsystem.model.Borrower;
+
 /**
  *
  * @author lieli
  */
 public class Borrowers extends javax.swing.JFrame {
+    
+    Borrower borrower = new Borrower();
 
     /**
      * Creates new form Books
      */
     public Borrowers() {
         initComponents();
+        borrower.loadBorrowersIntoTable(borrowerData);
     }
 
     /**
@@ -26,31 +31,32 @@ public class Borrowers extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton3 = new javax.swing.JButton();
+        btnDeleteBorrower = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jButton5 = new javax.swing.JButton();
+        borrowerData = new javax.swing.JTable();
+        addBorrower = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtBorrowerID = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtPhoneOrEmail = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
+        btnUpdateBorrower = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        checkBoxBorrowers = new javax.swing.JCheckBox();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton3.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jButton3.setText("Delete Borrower");
-        jButton3.setName("btnDelete"); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteBorrower.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        btnDeleteBorrower.setText("Delete Borrower");
+        btnDeleteBorrower.setName("btnDelete"); // NOI18N
+        btnDeleteBorrower.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnDeleteBorrowerActionPerformed(evt);
             }
         });
 
@@ -60,26 +66,31 @@ public class Borrowers extends javax.swing.JFrame {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setName("lblLibrarySystem"); // NOI18N
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        borrowerData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Borrower ID", "Username", "Name", "Phone/Email", "Has Library Card"
             }
-        ));
-        jTable3.setName("tblBorrowers"); // NOI18N
-        jScrollPane3.setViewportView(jTable3);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+            };
 
-        jButton5.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jButton5.setText("Add New Borrower");
-        jButton5.setName("btnAdd"); // NOI18N
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        borrowerData.setName("tblBorrowers"); // NOI18N
+        jScrollPane3.setViewportView(borrowerData);
+
+        addBorrower.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        addBorrower.setText("Add New Borrower");
+        addBorrower.setName("btnAdd"); // NOI18N
+        addBorrower.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                addBorrowerActionPerformed(evt);
             }
         });
 
@@ -87,32 +98,32 @@ public class Borrowers extends javax.swing.JFrame {
         jLabel2.setText("Borrower ID: ");
         jLabel2.setName("lblBorrowerID"); // NOI18N
 
-        jTextField1.setName("txtBorrowerD"); // NOI18N
+        txtBorrowerID.setName("txtBorrowerD"); // NOI18N
 
-        jTextField2.setName("txtUsername"); // NOI18N
+        txtUsername.setName("txtUsername"); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         jLabel3.setText("Username: ");
         jLabel3.setName("lblUsername"); // NOI18N
 
-        jTextField3.setName("txtName"); // NOI18N
+        txtName.setName("txtName"); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         jLabel4.setText("Name:");
         jLabel4.setName("lblName"); // NOI18N
 
-        jTextField4.setName("txtPhoneEmail"); // NOI18N
+        txtPhoneOrEmail.setName("txtPhoneEmail"); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         jLabel5.setText("Phone / Email:");
         jLabel5.setName("lblPhoneEmail"); // NOI18N
 
-        jButton6.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jButton6.setText("Update Borrower");
-        jButton6.setName("btnUpdate"); // NOI18N
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdateBorrower.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        btnUpdateBorrower.setText("Update Borrower");
+        btnUpdateBorrower.setName("btnUpdate"); // NOI18N
+        btnUpdateBorrower.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnUpdateBorrowerActionPerformed(evt);
             }
         });
 
@@ -120,77 +131,95 @@ public class Borrowers extends javax.swing.JFrame {
         jLabel6.setText("Has Library Card:");
         jLabel6.setName("lblLibraryCard"); // NOI18N
 
-        jCheckBox1.setName("cbLibraryCard"); // NOI18N
+        checkBoxBorrowers.setName("cbLibraryCard"); // NOI18N
+
+        btnBack.setBackground(new java.awt.Color(255, 153, 0));
+        btnBack.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 18)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
+        btnBack.setText("Back to Dashboard");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton6)
-                        .addGap(41, 41, 41)
-                        .addComponent(jButton3))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(239, 239, 239))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(24, 24, 24)
+                        .addComponent(btnBack))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(30, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(checkBoxBorrowers)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtBorrowerID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPhoneOrEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(addBorrower)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnUpdateBorrower)
+                                .addGap(41, 41, 41)
+                                .addComponent(btnDeleteBorrower))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 680, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtBorrowerID, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPhoneOrEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(checkBoxBorrowers, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton6)
-                    .addComponent(jButton5))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(btnDeleteBorrower)
+                    .addComponent(btnUpdateBorrower)
+                    .addComponent(addBorrower))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel2, jLabel3, jLabel4, jLabel5});
@@ -198,17 +227,43 @@ public class Borrowers extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void addBorrowerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        String username = txtUsername.getText();
+        String name = txtName.getText();
+        String phoneoremail = txtPhoneOrEmail.getText();
+        Boolean haslibrarycard = checkBoxBorrowers.isSelected();
+        
+        borrower.addBorrower(username, name, phoneoremail, haslibrarycard);
+        borrower.loadBorrowersIntoTable(borrowerData);
+    }//GEN-LAST:event_addBorrowerActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnDeleteBorrowerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteBorrowerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        int borrowerid = Integer.parseInt(txtBorrowerID.getText());
+        borrower.deleteBorrower(borrowerid);
+        borrower.loadBorrowersIntoTable(borrowerData);
+    }//GEN-LAST:event_btnDeleteBorrowerActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnUpdateBorrowerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateBorrowerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+        int borrowerid = Integer.parseInt(txtBorrowerID.getText());
+        String username = txtUsername.getText();
+        String name = txtName.getText();
+        String phoneoremail = txtPhoneOrEmail.getText();
+        Boolean haslibrarycard = checkBoxBorrowers.isSelected();
+        borrower.updateBorrower(borrowerid, username, name, phoneoremail, true);
+        borrower.loadBorrowersIntoTable(borrowerData);
+    }//GEN-LAST:event_btnUpdateBorrowerActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        Borrowers borrowers = new Borrowers();
+        borrowers.setVisible(false);
+
+        Main main = new Main();
+        main.setVisible(true);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,10 +302,12 @@ public class Borrowers extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JButton addBorrower;
+    private javax.swing.JTable borrowerData;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDeleteBorrower;
+    private javax.swing.JButton btnUpdateBorrower;
+    private javax.swing.JCheckBox checkBoxBorrowers;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -258,10 +315,9 @@ public class Borrowers extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField txtBorrowerID;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPhoneOrEmail;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

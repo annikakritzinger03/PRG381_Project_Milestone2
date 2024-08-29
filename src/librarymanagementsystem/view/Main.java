@@ -4,17 +4,39 @@
  */
 package librarymanagementsystem.view;
 
+import librarymanagementsystem.model.Book;
+import librarymanagementsystem.model.Borrower;
+import librarymanagementsystem.model.DBConnection;
+
 /**
  *
  * @author lieli
  */
 public class Main extends javax.swing.JFrame {
+    
+    DBConnection dbConnection;
+    Book book = new Book();
+    Borrower borrower = new Borrower();
+    
 
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
+        try {
+            dbConnection.getConnection();
+            dbConnection.createTables();
+        }catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        
+        
+        book.loadBooksIntoTable(bookData);
+        borrower.loadBorrowersIntoTable(borrowerData);
+        
+        
+        
     }
 
     /**
@@ -28,11 +50,11 @@ public class Main extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        borrowerData = new javax.swing.JTable();
+        btnBorrowers = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        bookData = new javax.swing.JTable();
+        btnBooks = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(203, 228, 252));
@@ -48,33 +70,38 @@ public class Main extends javax.swing.JFrame {
         jScrollPane2.setName("tblBorrowers"); // NOI18N
         jScrollPane2.setVerifyInputWhenFocusTarget(false);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        borrowerData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Borrower ID", "Username", "Name", "Phone/Email", "Has Library Card"
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+            };
 
-        jButton1.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jButton1.setText("Manage Borrowers");
-        jButton1.setName("btnBorrowers"); // NOI18N
-        jButton1.setVerifyInputWhenFocusTarget(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(borrowerData);
+
+        btnBorrowers.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        btnBorrowers.setText("Manage Borrowers");
+        btnBorrowers.setName("btnBorrowers"); // NOI18N
+        btnBorrowers.setVerifyInputWhenFocusTarget(false);
+        btnBorrowers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnBorrowersActionPerformed(evt);
             }
         });
 
         jScrollPane3.setName("tblBorrowers"); // NOI18N
         jScrollPane3.setVerifyInputWhenFocusTarget(false);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        bookData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -82,19 +109,27 @@ public class Main extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Book ID", "Title", "Genre", "Author ID"
             }
-        ));
-        jTable3.setName("tblBooks"); // NOI18N
-        jScrollPane3.setViewportView(jTable3);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
 
-        jButton2.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
-        jButton2.setText("Manage Books");
-        jButton2.setName("btnBooks"); // NOI18N
-        jButton2.setVerifyInputWhenFocusTarget(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        bookData.setName("tblBooks"); // NOI18N
+        jScrollPane3.setViewportView(bookData);
+
+        btnBooks.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
+        btnBooks.setText("Manage Books");
+        btnBooks.setName("btnBooks"); // NOI18N
+        btnBooks.setVerifyInputWhenFocusTarget(false);
+        btnBooks.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnBooksActionPerformed(evt);
             }
         });
 
@@ -105,23 +140,24 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(130, 130, 130)
-                                .addComponent(jButton1)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton2)
-                                .addGap(142, 142, 142))))
+                        .addGap(130, 130, 130)
+                        .addComponent(btnBorrowers))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(252, 252, 252)
-                        .addComponent(jLabel1)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBooks)
+                        .addGap(185, 185, 185))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(252, 252, 252)
+                .addComponent(jLabel1)
+                .addContainerGap(424, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,24 +169,36 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(btnBorrowers))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
+                        .addComponent(btnBooks)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnBorrowersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrowersActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        
+        Main main = new Main();
+        main.setVisible(false);
+        
+        Borrowers borrowers = new Borrowers();
+        borrowers.setVisible(true);
+        
+    }//GEN-LAST:event_btnBorrowersActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBooksActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        Main main = new Main();
+        main.setVisible(false);
+        
+        Books books = new Books();
+        books.setVisible(true);
+    }//GEN-LAST:event_btnBooksActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,12 +236,12 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTable bookData;
+    private javax.swing.JTable borrowerData;
+    private javax.swing.JButton btnBooks;
+    private javax.swing.JButton btnBorrowers;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     // End of variables declaration//GEN-END:variables
 }
