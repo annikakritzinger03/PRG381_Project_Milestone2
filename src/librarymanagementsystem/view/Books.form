@@ -54,7 +54,7 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="btnDeleteBorrower1" min="-2" pref="197" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="34" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
@@ -75,14 +75,14 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Group type="102" attributes="0">
+                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="cbGenre" min="-2" pref="247" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
                                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="txtAuthorID" min="-2" pref="247" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="txtGenre" min="-2" pref="247" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
@@ -123,8 +123,8 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtGenre" linkSize="2" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbGenre" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -165,16 +165,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Book Title: "/>
             <Property name="name" type="java.lang.String" value="lblTitle" noResource="true"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtGenre">
-          <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
-                <BevelBorder bevelType="1"/>
-              </Border>
-            </Property>
-            <Property name="name" type="java.lang.String" value="txtGenre" noResource="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnDelete">
@@ -346,6 +336,44 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteBorrower1ActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbGenre">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="27">
+                <StringItem index="0" value=" "/>
+                <StringItem index="1" value="Adventure"/>
+                <StringItem index="2" value="Anthology"/>
+                <StringItem index="3" value="Autobiography"/>
+                <StringItem index="4" value="Biography"/>
+                <StringItem index="5" value="Children&apos;s Fiction"/>
+                <StringItem index="6" value="Drama"/>
+                <StringItem index="7" value="Essay"/>
+                <StringItem index="8" value="Fantasy"/>
+                <StringItem index="9" value="Graphic Novel"/>
+                <StringItem index="10" value="Historical Fiction"/>
+                <StringItem index="11" value="History"/>
+                <StringItem index="12" value="Horror"/>
+                <StringItem index="13" value="Literary Fiction"/>
+                <StringItem index="14" value="Memoir"/>
+                <StringItem index="15" value="Mystery"/>
+                <StringItem index="16" value="Philosophy"/>
+                <StringItem index="17" value="Poetry"/>
+                <StringItem index="18" value="Romance"/>
+                <StringItem index="19" value="Science"/>
+                <StringItem index="20" value="Science Fiction"/>
+                <StringItem index="21" value="Self-Help"/>
+                <StringItem index="22" value="Short Stories"/>
+                <StringItem index="23" value="Thriller"/>
+                <StringItem index="24" value="Travel"/>
+                <StringItem index="25" value="True Crime"/>
+                <StringItem index="26" value="Young Adult Fiction"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

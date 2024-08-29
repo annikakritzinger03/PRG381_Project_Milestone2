@@ -4,6 +4,7 @@
  */
 package librarymanagementsystem.view;
 
+import javax.swing.JOptionPane;
 import librarymanagementsystem.model.Book;
 
 /**
@@ -35,7 +36,6 @@ public class Books extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         txtTitle = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtGenre = new javax.swing.JTextField();
         btnDelete = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -48,6 +48,7 @@ public class Books extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtBookID = new javax.swing.JTextField();
         btnDeleteBorrower1 = new javax.swing.JButton();
+        cbGenre = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,9 +60,6 @@ public class Books extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
         jLabel3.setText("Book Title: ");
         jLabel3.setName("lblTitle"); // NOI18N
-
-        txtGenre.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtGenre.setName("txtGenre"); // NOI18N
 
         btnDelete.setBackground(new java.awt.Color(102, 204, 255));
         btnDelete.setFont(new java.awt.Font("Montserrat", 1, 18)); // NOI18N
@@ -159,6 +157,8 @@ public class Books extends javax.swing.JFrame {
             }
         });
 
+        cbGenre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Adventure", "Anthology", "Autobiography", "Biography", "Children's Fiction", "Drama", "Essay", "Fantasy", "Graphic Novel", "Historical Fiction", "History", "Horror", "Literary Fiction", "Memoir", "Mystery", "Philosophy", "Poetry", "Romance", "Science", "Science Fiction", "Self-Help", "Short Stories", "Thriller", "Travel", "True Crime", "Young Adult Fiction" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -189,13 +189,13 @@ public class Books extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtAuthorID, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(cbGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtAuthorID, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 18, Short.MAX_VALUE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -224,8 +224,8 @@ public class Books extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(cbGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtAuthorID, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,7 +241,7 @@ public class Books extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtAuthorID, txtBookID, txtGenre, txtTitle});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtAuthorID, txtBookID, txtTitle});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -268,7 +268,7 @@ public class Books extends javax.swing.JFrame {
         // TODO add your handling code here:
         int bookid = Integer.parseInt(txtBookID.getText());
         String title = txtTitle.getText();
-        String genre = txtGenre.getText();
+        String genre = (String) cbGenre.getSelectedItem();
         int authorid = Integer.parseInt(txtAuthorID.getText());
 
         books.updateBook(bookid,title, genre, authorid);
@@ -276,18 +276,32 @@ public class Books extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateBookActionPerformed
 
     private void btnAddBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddBookActionPerformed
-        // TODO add your handling code here:
-        String title = txtTitle.getText();
-        String genre = txtGenre.getText();
-        int authorid = Integer.parseInt(txtAuthorID.getText());
+        String title = txtTitle.getText().trim();
+        String genre = (String) cbGenre.getSelectedItem();
+    
+    // Validate title and genre
+        if (title.isEmpty() || genre.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Book Title and Book Genre cannot be empty.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-        books.addBook(title, genre, authorid);
+        // Validate author ID
+        int authorId;
+        try {
+            authorId = Integer.parseInt(txtAuthorID.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Author ID is required and must be a number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return; 
+        }
+        
+     
+        books.addBook(title, genre, authorId);
         books.loadBooksIntoTable(bookData);
+       
     }//GEN-LAST:event_btnAddBookActionPerformed
 
     private void btnDeleteBorrower1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteBorrower1ActionPerformed
-        // TODO add your handling code here:
-        
+
         this.setVisible(false);
         
         Main main = new Main();
@@ -295,23 +309,21 @@ public class Books extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteBorrower1ActionPerformed
 
     private void bookDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bookDataMouseClicked
-         // Get the index of the selected row
-    int selectedRowIndex = bookData.getSelectedRow();
-    
-    // Check if a row is selected
-    if (selectedRowIndex != -1) {
-        // Get data from the selected row
-        int bookId = (int) bookData.getValueAt(selectedRowIndex, 0);
-        String title = (String) bookData.getValueAt(selectedRowIndex, 1);
-        String genre = (String) bookData.getValueAt(selectedRowIndex, 2);
-        int authorId = (int) bookData.getValueAt(selectedRowIndex, 3);
-        
-        // Set data to text fields
-        txtBookID.setText(String.valueOf(bookId));
-        txtTitle.setText(title);
-        txtGenre.setText(genre);
-        txtAuthorID.setText(String.valueOf(authorId));
-    }
+
+        int selectedRowIndex = bookData.getSelectedRow();
+
+        if (selectedRowIndex != -1) {
+            int bookId = (int) bookData.getValueAt(selectedRowIndex, 0);
+            String title = (String) bookData.getValueAt(selectedRowIndex, 1);
+            String genre = (String) bookData.getValueAt(selectedRowIndex, 2);
+            int authorId = (int) bookData.getValueAt(selectedRowIndex, 3);
+
+            txtBookID.setText(String.valueOf(bookId));
+            txtTitle.setText(title);
+            txtAuthorID.setText(String.valueOf(authorId));
+
+            cbGenre.setSelectedItem(genre);
+        }
     }//GEN-LAST:event_bookDataMouseClicked
 
     /**
@@ -355,6 +367,7 @@ public class Books extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnDeleteBorrower1;
     private javax.swing.JButton btnUpdateBook;
+    private javax.swing.JComboBox<String> cbGenre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -364,7 +377,6 @@ public class Books extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField txtAuthorID;
     private javax.swing.JTextField txtBookID;
-    private javax.swing.JTextField txtGenre;
     private javax.swing.JTextField txtTitle;
     // End of variables declaration//GEN-END:variables
 }
