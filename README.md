@@ -17,8 +17,8 @@
    - Navigate to the **For Java 21 and Higher** section
    - Download the zipped folder directly from this link: [Apache Derby 10.17.1.0](https://dlcdn.apache.org//db/derby/db-derby-10.17.1.0/db-derby-10.17.1.0-bin.zip)
 
-   > [!NOTE]
-   > Store the folder in a location where it can be easily found and accessed later.
+> [!NOTE]
+> Store the folder in a location where it can be easily found and accessed later.
 
 ### Configuration:
 1. **Access the Services Tab**: 
@@ -31,8 +31,8 @@
   
    ![img.png](img.png)
 
-    > [!NOTE]
-    > All other options except `Properties` should be greyed out unless the server is already configured, as shown in the example.
+> [!NOTE]
+> All other options except `Properties` should be greyed out unless the server is already configured, as shown in the example.
 
 4. Configure the Properties as follows:
    - **Java DB Installation:** Browse and select the unzipped Apache Derby folder.
