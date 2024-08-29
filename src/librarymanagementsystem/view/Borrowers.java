@@ -63,7 +63,7 @@ public class Borrowers extends javax.swing.JFrame {
         btnDeleteBorrower1.setText("Back to Dashboard");
         btnDeleteBorrower1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnDeleteBorrower1.setBorderPainted(false);
-        btnDeleteBorrower1.setName("btnDelete"); // NOI18N
+        btnDeleteBorrower1.setName("btnBack"); // NOI18N
         btnDeleteBorrower1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteBorrower1ActionPerformed(evt);
@@ -207,10 +207,9 @@ public class Borrowers extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
+                        .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtBorrowerID, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
@@ -230,7 +229,9 @@ public class Borrowers extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(checkBoxBorrowers, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addBorrower)
@@ -238,7 +239,7 @@ public class Borrowers extends javax.swing.JFrame {
                     .addComponent(btnDeleteBorrower))
                 .addGap(18, 18, 18)
                 .addComponent(btnDeleteBorrower1)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtBorrowerID, txtName, txtPhoneOrEmail, txtUsername});
@@ -259,6 +260,11 @@ public class Borrowers extends javax.swing.JFrame {
 
     private void btnDeleteBorrower1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteBorrower1ActionPerformed
         // TODO add your handling code here:
+        Borrowers borrowers = new Borrowers();
+        borrowers.setVisible(false);
+
+        Main main = new Main();
+        main.setVisible(true);
     }//GEN-LAST:event_btnDeleteBorrower1ActionPerformed
 
     private void btnDeleteBorrowerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteBorrowerActionPerformed
