@@ -12,3 +12,9 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\lieli\OneDrive - belgiumcampus.ac.za\_Belgium Campus\Third Year (2024)\PRG381\_Projects\PRG381_Project_Milestone2\database
 Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Thu Aug 29 17:46:25 SAST 2024: Shutting down Derby engine
+----------------------------------------------------------------
+Thu Aug 29 17:46:25 SAST 2024:
+Shutting down instance a816c00e-0191-9dd2-de18-00001f7f67e9 on database directory C:\Users\lieli\OneDrive - belgiumcampus.ac.za\_Belgium Campus\Third Year (2024)\PRG381\_Projects\PRG381_Project_Milestone2\database\LibraryDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@70dea4e 
+----------------------------------------------------------------
