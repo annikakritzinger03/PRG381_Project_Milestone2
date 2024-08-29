@@ -197,9 +197,7 @@ public class Main extends javax.swing.JFrame {
 
     private void btnBorrowersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrowersActionPerformed
         // TODO add your handling code here:
-        
-        Main main = new Main();
-        main.setVisible(false);
+        this.setVisible(false);
         
         Borrowers borrowers = new Borrowers();
         borrowers.setVisible(true);
@@ -208,8 +206,7 @@ public class Main extends javax.swing.JFrame {
 
     private void btnBooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBooksActionPerformed
         // TODO add your handling code here:
-        Main main = new Main();
-        main.setVisible(false);
+        this.setVisible(false);
         
         Books books = new Books();
         books.setVisible(true);

@@ -282,8 +282,8 @@ public class Books extends javax.swing.JFrame {
 
     private void btnDeleteBorrower1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteBorrower1ActionPerformed
         // TODO add your handling code here:
-        Books book = new Books();
-        book.setVisible(false);
+        
+        this.setVisible(false);
         
         Main main = new Main();
         main.setVisible(true);
