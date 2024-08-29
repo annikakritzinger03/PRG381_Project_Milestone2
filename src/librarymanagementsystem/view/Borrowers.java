@@ -4,6 +4,9 @@
  */
 package librarymanagementsystem.view;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 import librarymanagementsystem.model.Borrower;
 
 /**
@@ -281,26 +284,70 @@ public class Borrowers extends javax.swing.JFrame {
         borrower.deleteBorrower(borrowerid);
         borrower.loadBorrowersIntoTable(borrowerData);
     }//GEN-LAST:event_btnDeleteBorrowerActionPerformed
+    
+    private static final String PHONE_REGEX = "^\\d{10}$";
+    private static final String GMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@gmail\\.com$";
+    
+    public boolean isPhoneNumber(String input) {
+        return validateWithRegex(input, PHONE_REGEX);
+    }
 
+    public boolean isGmailAddress(String input) {
+        return validateWithRegex(input, GMAIL_REGEX);
+    }
+
+    private boolean validateWithRegex(String input, String regex) {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(input);
+        return matcher.matches();
+    }
+    
     private void btnUpdateBorrowerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateBorrowerActionPerformed
-        // TODO add your handling code here:
-        int borrowerid = Integer.parseInt(txtBorrowerID.getText());
-        String username = txtUsername.getText();
-        String name = txtName.getText();
-        String phoneoremail = txtPhoneOrEmail.getText();
-        Boolean haslibrarycard = checkBoxBorrowers.isSelected();
-        borrower.updateBorrower(borrowerid, username, name, phoneoremail, true);
-        borrower.loadBorrowersIntoTable(borrowerData);
+
+         int borrowerId;
+         String username = txtUsername.getText().trim();
+         String name = txtName.getText().trim();
+         String phoneOrEmail = txtPhoneOrEmail.getText().trim();
+         Boolean hasLibraryCard = checkBoxBorrowers.isSelected();
+
+         try {
+             borrowerId = Integer.parseInt(txtBorrowerID.getText().trim());
+         } catch (NumberFormatException e) {
+             JOptionPane.showMessageDialog(null, "Borrower ID must be a valid number.", "Input Error", JOptionPane.ERROR_MESSAGE);
+             return;
+         }
+
+         if (username.isEmpty() || name.isEmpty()) {
+             JOptionPane.showMessageDialog(null, "Username and Name cannot be empty.", "Input Error", JOptionPane.ERROR_MESSAGE);
+             return; 
+         }
+
+         if (!isPhoneNumber(phoneOrEmail) && !isGmailAddress(phoneOrEmail)) {
+             JOptionPane.showMessageDialog(null, "Phone or Email must be a valid phone number (10 digits) or a Gmail address.", "Input Error", JOptionPane.ERROR_MESSAGE);
+             return; 
+         }
+
+         borrower.updateBorrower(borrowerId, username, name, phoneOrEmail, hasLibraryCard);
+         borrower.loadBorrowersIntoTable(borrowerData);
     }//GEN-LAST:event_btnUpdateBorrowerActionPerformed
 
     private void addBorrowerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBorrowerActionPerformed
-        // TODO add your handling code here:
-        String username = txtUsername.getText();
-        String name = txtName.getText();
-        String phoneoremail = txtPhoneOrEmail.getText();
-        Boolean haslibrarycard = checkBoxBorrowers.isSelected();
+        String username = txtUsername.getText().trim();
+        String name = txtName.getText().trim();
+        String phoneoremail = txtPhoneOrEmail.getText().trim();
+        Boolean hasLibraryCard = checkBoxBorrowers.isSelected();
 
-        borrower.addBorrower(username, name, phoneoremail, haslibrarycard);
+        if (username.isEmpty() || name.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Username and Name cannot be empty.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return; 
+        }
+        
+        if (!isPhoneNumber(phoneoremail) && !isGmailAddress(phoneoremail)) {
+            JOptionPane.showMessageDialog(null, "Phone or Email must be a valid phone number or a Gmail address.", "Input Error", JOptionPane.ERROR_MESSAGE);
+            return; 
+        }
+
+        borrower.addBorrower(username, name, phoneoremail, hasLibraryCard);
         borrower.loadBorrowersIntoTable(borrowerData);
     }//GEN-LAST:event_addBorrowerActionPerformed
 
